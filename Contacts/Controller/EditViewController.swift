@@ -8,14 +8,41 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
+import AlamofireObjectMapper
 
 class EditViewController: UITableViewController {
     
-    var persons : [String] = ["charbel","ghady","mona"]
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        getContactData(url: getUserURL)
     }
+    
+    
+    var persons : [String] = ["charbel","ghady","mona"]
+//    let getUserURL = "http://localhost:4000/edit"
+    var perso = [Person]()
+    func getContactData(url: String){
+        Alamofire.request(url, method: .get).responseJSON { (response) in
+            if response.result.isSuccess {
+                print("Success")
+//                print(response.result.value!)
+                let usersData : JSON = JSON(response.result.value!)
+                
+                for user in usersData{
+                    print(user.1["name"])
+                }
+            }
+            else{
+                print("Error: \(response.result.error!)")
+            }
+        }
+    }
+    
+ 
+    
+    
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return persons.count
@@ -27,3 +54,4 @@ class EditViewController: UITableViewController {
         return cell
     }
 }
+
