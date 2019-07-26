@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="1794" y="-211"/>
         </scene>
-        <!--Item-->
+        <!--Contacts View Controller-->
         <scene sceneID="2Qn-3f-lVd">
             <objects>
                 <viewController storyboardIdentifier="ContactsViewController" id="lVZ-LN-Lqi" customClass="ContactsViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,12 +51,28 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contactCell" id="CQj-SZ-TF7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contactCell" textLabel="d41-es-umI" detailTextLabel="P4h-uT-iiL" style="IBUITableViewCellStyleSubtitle" id="CQj-SZ-TF7">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CQj-SZ-TF7" id="xBO-qS-3b8">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d41-es-umI">
+                                                    <rect key="frame" x="20" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P4h-uT-iiL">
+                                                    <rect key="frame" x="20" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -75,7 +91,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0be-hq-iYy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="aUv-4O-Xf6"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="aUv-4O-Xf6"/>
                     <connections>
                         <outlet property="contactsTableView" destination="7gW-8S-Xxm" id="ScQ-4Y-gQv"/>
                     </connections>
@@ -95,7 +111,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="mHc-ba-qmw" kind="relationship" relationship="viewControllers" id="H8T-I2-hu3"/>
                         <segue destination="lVZ-LN-Lqi" kind="relationship" relationship="viewControllers" id="X4x-VW-uE1"/>
                     </connections>
                 </tabBarController>

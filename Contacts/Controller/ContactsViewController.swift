@@ -32,6 +32,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
         cell.textLabel?.text = persons[indexPath.row].name!
+        cell.detailTextLabel?.text = "\(persons[indexPath.row].city!), \(persons[indexPath.row].country!)"
         return cell
     }
 
