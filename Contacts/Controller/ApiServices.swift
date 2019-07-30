@@ -42,9 +42,13 @@ class ApiServices {
                 
             }
         }
-        
-        
-        
+    }
+    
+    static func addNewContact(params : [String : String]){
+        Alamofire.request(API_ADDNEWUSER, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                print(response)
+        }
     }
 }
 
