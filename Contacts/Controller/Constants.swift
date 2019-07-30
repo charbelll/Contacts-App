@@ -10,4 +10,4 @@ import Foundation
 
 let BASE_URL = "http://localhost:4000/"
 let API_GETUSERS = BASE_URL + "edit"
-
+let API_GETUSERFROMSEARCH = BASE_URL + "search/predictUser/"
