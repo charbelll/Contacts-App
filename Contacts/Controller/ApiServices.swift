@@ -13,9 +13,7 @@ import AlamofireObjectMapper
 
 class ApiServices {
     
-    
     init() {
-        
     }
     
     static func getPersons( completion: @escaping ([Person]?, Int) -> Void) {
@@ -25,8 +23,12 @@ class ApiServices {
         let req = request(url, method: .get)
         
         req.responseArray { (response: DataResponse<[Person]>) in
-            
-        completion(response.value, response.response!.statusCode)
+            if let res = response.response{
+                completion(response.value, res.statusCode)
+            }else{
+                print("Problem loading elements from database")
+            }
+        
         }
     }
     
@@ -50,5 +52,11 @@ class ApiServices {
                 print(response)
         }
     }
+    
+    static func updatePerson(urlExtension: String, params : [String : String]){
+        Alamofire.request(API_UPDATEUSER+urlExtension, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
+            print(API_UPDATEUSER+urlExtension)
+            print(response)
+        }
+    }
 }
-

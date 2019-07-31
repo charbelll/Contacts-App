@@ -7,19 +7,41 @@
 //
 
 import UIKit
+import SVProgressHUD
 
-class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ContactsViewController: UIViewController {
     
     
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var contactsTableView: UITableView!
     var persons: [Person] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
         getAllUsers()
     }
     
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ContactInfoSegue"{
+        let destinationVC = segue.destination as! ContactInfoViewController
+        if let indexPath = contactsTableView.indexPathForSelectedRow{
+            destinationVC.newPerson = persons[indexPath.row]
+            
+            }
+        }
+    }
+    
+}
+//Mark: - TableView methods
+extension ContactsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return persons.count
     }
@@ -38,10 +60,12 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(persons[indexPath.row].name!)
+        performSegue(withIdentifier: "ContactInfoSegue", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }
+
+
 
 //MARK: - SearchBar methods
 

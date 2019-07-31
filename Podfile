@@ -8,4 +8,5 @@ target 'Contacts' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'AlamofireObjectMapper'
+pod 'SVProgressHUD'
 end
