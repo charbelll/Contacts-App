@@ -27,7 +27,6 @@ class AddContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("")
         cityPickerView.dataSource = self
         cityPickerView.delegate = self
         cityPickerView.selectRow(1, inComponent: 0, animated: true)
@@ -69,6 +68,7 @@ extension AddContactViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return dataSource[row]
     }
+    
 }
 
 extension AddContactViewController {

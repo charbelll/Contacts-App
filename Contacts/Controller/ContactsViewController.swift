@@ -25,22 +25,22 @@ class ContactsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         SVProgressHUD.dismiss()
         getAllUsers()
+        
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ContactInfoSegue"{
         let destinationVC = segue.destination as! ContactInfoViewController
         if let indexPath = contactsTableView.indexPathForSelectedRow{
             destinationVC.newPerson = persons[indexPath.row]
-            
             }
         }
     }
     
 }
+
 //Mark: - TableView methods
+
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return persons.count
@@ -63,9 +63,32 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource{
         performSegue(withIdentifier: "ContactInfoSegue", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction{
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            
+            let alert = UIAlertController(title: "Delete Contact?", message: "Are you sure you want to delete this contact?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alertAction) in
+                completion(false)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (alertAction) in
+                ApiServices.deletePerson(urlExtension: String(self.persons[indexPath.row].id!))
+                self.persons.remove(at: indexPath.row)
+                self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+                completion(true)
+            }))
+            
+            self.present(alert, animated: true)
+        }
+        return action
+    }
 }
-
-
 
 //MARK: - SearchBar methods
 

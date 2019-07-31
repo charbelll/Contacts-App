@@ -59,4 +59,11 @@ class ApiServices {
             print(response)
         }
     }
+    
+    static func deletePerson(urlExtension: String){
+        Alamofire.request(API_DELETEUSER+urlExtension, method: .post,encoding: JSONEncoding.default).responseJSON { response in
+            print(API_UPDATEUSER+urlExtension)
+            print(response)
+        }
+    }
 }
